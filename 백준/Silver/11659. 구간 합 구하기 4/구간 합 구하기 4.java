@@ -16,7 +16,7 @@ public class Main {
 
         for (int i = 2; i <= N; i++) {
             input[i] = input[i - 1] + Integer.parseInt(st.nextToken());
-        } // 누적합
+        } // 부분합 배열
 
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
