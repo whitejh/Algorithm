@@ -1,46 +1,50 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
 // 좌표 정렬하기
-// 2025/1/20 
+// 2025/1/28 화요일 오후 3시 20분
 public class Main {
-    public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
+    private static class Point implements Comparable<Point> {
+        int x, y;
 
-        ArrayList<Point> points = new ArrayList<>();
+        public Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public int compareTo(Point o) {
+            if (this.x == o.x) {
+                return Integer.compare(this.y, o.y);
+            } else {
+                return Integer.compare(this.x, o.x);
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        Point[] points = new Point[N];
+
+        StringTokenizer st;
 
         for (int i = 0; i < N; i++) {
-            points.add(new Point(sc.nextInt(), sc.nextInt()));
+            st = new StringTokenizer(br.readLine());
+            points[i] = new Point(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
         }
 
-        Collections.sort(points);
+        Arrays.sort(points);
+        StringBuilder sb = new StringBuilder();
 
-        for (Point now : points) {
-            System.out.println(now.x + " " + now.y);
+        for (int i = 0; i < N; i++) {
+            sb.append(points[i].x).append(" ").append(points[i].y).append("\n");
         }
-    }
-}
 
-class Point implements Comparable<Point> {
-    int x;
-    int y;
-
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public int compareTo(Point o) {
-        if (this.x == o.x) {
-            return this.y - o.y;
-        }
-        return this.x - o.x;
+        System.out.println(sb);
     }
 }
