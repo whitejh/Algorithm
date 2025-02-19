@@ -45,7 +45,7 @@ import java.util.*;
 
                     if (!visited[nr][nc]) {
                         visited[nr][nc] = true; // 방문처리
-                        queue.add(new Node(nr, nc));
+                        queue.addLast(new Node(nr, nc));
                         dist[nr][nc] = dist[now.r][now.c] + 1; // 다음 정점 최단거리 = 현재 정점 최단거리+1
                     }
                 }
