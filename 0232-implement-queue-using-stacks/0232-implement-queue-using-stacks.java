@@ -2,8 +2,8 @@ import java.util.*;
 
 class MyQueue {
 
-    Stack<Integer> s1;
-    Stack<Integer> s2;
+    Stack<Integer> s1; // inputStack
+    Stack<Integer> s2; // outputStack
 
     public MyQueue() {
         s1 = new Stack<>();
