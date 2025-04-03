@@ -35,4 +35,16 @@ This is an auto push repository for Baekjoon Online Judge created with [Baekjoon
 |  |
 | ------- |
 | [0347-top-k-frequent-elements](https://github.com/whitejh/Algorithm/tree/master/0347-top-k-frequent-elements) |
+## Stack
+|  |
+| ------- |
+| [0232-implement-queue-using-stacks](https://github.com/whitejh/Algorithm/tree/master/0232-implement-queue-using-stacks) |
+## Design
+|  |
+| ------- |
+| [0232-implement-queue-using-stacks](https://github.com/whitejh/Algorithm/tree/master/0232-implement-queue-using-stacks) |
+## Queue
+|  |
+| ------- |
+| [0232-implement-queue-using-stacks](https://github.com/whitejh/Algorithm/tree/master/0232-implement-queue-using-stacks) |
 <!---LeetCode Topics End-->
