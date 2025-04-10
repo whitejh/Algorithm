@@ -10,7 +10,7 @@ public class Main {
         int N = Integer.parseInt(st.nextToken()); // 동전 종류
         int K = Integer.parseInt(st.nextToken()); // 동전 가치 합
 
-        int[] arr = new int[N + 1];
+        int[] arr = new int[N];
 
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(br.readLine());
