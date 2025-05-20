@@ -1,61 +1,59 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 // DFS
-// 2025/2/21 금요일 오후 7시 15분
+// 2025.5.21 수요일 오전 12시 11분
 public class Main {
 
-    static ArrayList<Integer>[] A; // 그래프 데이터 저장하는 인접 리스트
-    static boolean visited[]; // 방문 배열
+    final static int MAX = 1000 + 10; // N이 가질 수 있는 최댓값
+    static boolean[][] graph;
+    static boolean[] visited; // 재방문 방지 배열
+    static int N, M;
+    static int answer;
+    static StringBuilder sb = new StringBuilder();
+
+    static void dfs(int idx) {
+        visited[idx] = true;
+        for (int i = 1; i <= N ; i++) {
+            if(!visited[i] && graph[idx][i])
+                dfs(i);
+        }
+    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
         StringTokenizer st = new StringTokenizer(br.readLine());
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
 
-        int N = Integer.parseInt(st.nextToken()); // 노드 개수 : 6
-        int M = Integer.parseInt(st.nextToken()); // 에지 개수 : 5
-
-        A = new ArrayList[N + 1];
-        visited = new boolean[N + 1]; // 0번 인덱스가 헷갈려서 사용 안하려고 N+1 선언
-
-        for (int i = 1; i < N + 1; i++) {
-            A[i] = new ArrayList<Integer>(); // 인접리스트 초기화
-        }
+        // 1. graph에 연결 정보 채우기
+        graph = new boolean[MAX][MAX];
+        visited = new boolean[MAX];
 
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
-            int start = Integer.parseInt(st.nextToken());
-            int end = Integer.parseInt(st.nextToken());
-
-            // 양방향 에지이므로 양쪽에 에지를 더하기
-            A[start].add(end); // 시작점 -> 종료점
-            A[end].add(start); // 종료점 -> 시작점
+            int u = Integer.parseInt(st.nextToken());
+            int v = Integer.parseInt(st.nextToken());
+            graph[u][v] = true;
+            graph[v][u] = true;
         }
 
-        int cnt = 0; // 연결 요소의 개수
-        for (int i = 1; i < N + 1; i++) {
-            if (!visited[i]) { // 방문하지 않은 노드가 없을 때까지 반복
-                DFS(i);
-                cnt++;
+        // 2. dfs(재귀함수 호출)
+        for (int i = 1; i <= N; i++) {
+            if(!visited[i]) {
+                dfs(i);
+                answer++;
             }
         }
 
-        System.out.println(cnt);
+        // 3. 출력
+        bw.write(String.valueOf(answer));
+
+        bw.close();
+        br.close();
+
     }
 
-    // DFS 구현
-    private static void DFS(int v) {
-        if (visited[v]) return;
-
-        visited[v] = true; // 방문 배열에 현재 노드 기록
-
-        for (int i : A[v]) {
-            if (!visited[i]) { // 연결 노드 중 방문하지 않았던 노드만 탐색
-                DFS(i); // 현재 노드의 연결 노드 중 방문하지 않은 노드로 DFS 실행 (재귀함수 형태)
-            }
-        }
-    }
 }
