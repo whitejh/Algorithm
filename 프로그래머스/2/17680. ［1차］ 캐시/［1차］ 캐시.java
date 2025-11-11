@@ -16,12 +16,12 @@ class Solution {
             if (cache.contains(city)) { // O(N * M) 30 * 20 * 100,000
                 answer += HIT;
                 cache.remove(city);
-                cache.addLast(city);
+                cache.offer(city);
             } else {
                 answer += MISS;
-                cache.addLast(city);
+                cache.offer(city);
                 if (cache.size() > cacheSize)
-                    cache.pollFirst();
+                    cache.poll();
             }
         }
 
