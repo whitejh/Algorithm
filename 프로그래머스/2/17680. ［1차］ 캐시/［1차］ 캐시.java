@@ -9,6 +9,9 @@ class Solution {
         int answer = 0;
 
         ArrayDeque<String> cache = new ArrayDeque<>();
+        
+        if (cacheSize == 0)
+            return cities.length * 5;
 
         for (String city : cities) { // O(N) N = 100,000
             city = city.toUpperCase(); //O(N) N = 20
