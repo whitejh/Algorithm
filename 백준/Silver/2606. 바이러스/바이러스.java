@@ -1,20 +1,21 @@
 import java.io.*;
 import java.util.*;
 
-// 2025/5/19 월요일 오후 2시 30분
+// 복습
+// 2025/11/14 금요일
 public class Main {
 
-    static boolean[][] graph;
-    static boolean[] visited; // 재방문 방지 배열
     static int N, M;
-    static int answer;
+    static int answer; // 1번 컴퓨터를 통해 웜 바이러스에 걸리게 되는 컴퓨터의 수
+    static boolean[][] graph;
+    static boolean[] visited;
 
     public static void dfs(int idx) {
         visited[idx] = true;
-        answer++; // dfs 호출되는 횟수만큼 몇개의 컴퓨터가 연결되어있는지 의미
+        answer += 1;
 
         for (int i = 1; i <= N; i++) {
-            if (!visited[i] && graph[idx][i]) {
+            if (!visited[i] && graph[i][idx]) {
                 dfs(i);
             }
         }
@@ -30,24 +31,23 @@ public class Main {
         graph = new boolean[N + 1][N + 1];
         visited = new boolean[N + 1];
 
-        // 1. graph에 연결 정보 채우기
+        // graph에 연결 정보 채우기
         int x, y;
         for (int i = 0; i < M; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             x = Integer.parseInt(st.nextToken());
             y = Integer.parseInt(st.nextToken());
+
+            // 그래프에 양방향으로 저장 (무방향 그래프)
             graph[x][y] = true;
             graph[y][x] = true;
         }
 
-        // 2. dfs(재귀함수) 호출
-        dfs(1);
+        // dfs
+        dfs(1); // 1번 컴퓨터부터 시작
 
+        bw.write(String.valueOf(answer - 1)); // 1번 컴퓨터 제외
 
-        // 3. 출력
-        bw.write(String.valueOf(answer - 1)); // 1번 컴퓨터를 제외한 값이므로 1 뺌
-
-        br.close();
         bw.close();
     }
 }
