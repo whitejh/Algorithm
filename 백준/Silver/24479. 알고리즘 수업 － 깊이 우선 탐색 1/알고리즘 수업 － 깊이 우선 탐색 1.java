@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-// 2025/5/21 수요일 오전 11시
+// 2025/11/16 일요일 오후 11시 복습
 // 시작점을 변수로 제공
 // N이 10만이라서 2차원 배열 말고 ArrayList 사용
 public class Main {
@@ -24,6 +24,7 @@ public class Main {
 
         for (int i = 0; i < graph[idx].size(); i++) {
             int next = graph[idx].get(i); // idx 기준으로 i번째 연결되어있는 요소(다음에 방문할 노드)
+
             if (!visited[next]) {
                 dfs(next);
             }
@@ -40,12 +41,12 @@ public class Main {
         R = Integer.parseInt(st.nextToken());
 
         // 1. graph에 연결 정보 채우기
-        graph = new ArrayList[N+1];
+        graph = new ArrayList[N + 1];
         for (int i = 0; i <= N; i++) {
             graph[i] = new ArrayList<>();
         }
-        visited = new boolean[N+1];
-        answer = new int[N+1];
+        visited = new boolean[N + 1];
+        answer = new int[N + 1];
         order = 1; // 순서
 
         for (int i = 0; i < M; i++) {
