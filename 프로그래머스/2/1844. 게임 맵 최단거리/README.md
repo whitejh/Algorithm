@@ -1,6 +1,6 @@
 # [level 2] 게임 맵 최단거리 - 1844 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1844) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/1844?gad_source=1&gad_campaignid=22799790467&gbraid=0AAAAAC_c4nD68pzja7KU8iJLNMbmr4mGa&gclid=CjwKCAiAz_DIBhBJEiwAVH2XwFAcav9qt6wdwUhLbBGPU9eiSjAB2RDN4F4VtFtl0nAwMT5_JyTGhRoC4_8QAvD_BwE) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 11월 19일 22:34:21
+2025년 11월 19일 22:35:07
 
 ### 문제 설명
 
