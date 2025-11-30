@@ -1,6 +1,6 @@
 # [level 3] 등산코스 정하기 - 118669 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/118669?gad_source=1&gad_campaignid=22799790467&gbraid=0AAAAAC_c4nBNh67eh1gNu6hjXgNSf3mSB&gclid=Cj0KCQiA0KrJBhCOARIsAGIy9wAVFvLr4itzNS6jD9hN1MZ9ygCnW-QqoB1jugUZjAiW1eAqLngGz9waAso7EALw_wcB) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/118669) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 11월 30일 15:58:19
+2025년 11월 30일 15:59:22
 
 ### 문제 설명
 
