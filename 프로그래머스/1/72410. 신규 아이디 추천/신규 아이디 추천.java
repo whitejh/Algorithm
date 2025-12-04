@@ -29,12 +29,12 @@ class Solution {
 
         // 7단계
         if (answer.length() <= 2) {
-            String last = String.valueOf(answer.charAt(answer.length() - 1));
+            //String last = String.valueOf(answer.charAt(answer.length() - 1));
             while (true) {
                 if (answer.length() == 3) {
                     break;
                 }
-                answer += last;
+                answer += answer.charAt(answer.length() - 1);
             }
         }
         
