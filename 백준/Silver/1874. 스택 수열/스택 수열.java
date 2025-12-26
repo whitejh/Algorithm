@@ -1,46 +1,38 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Scanner;
-import java.util.Stack;
+import java.io.*;
+import java.util.*;
 
-// 스택 수열
-// 2025/2/2 오후 9시
+// 2025/12/26 금요일 오후 12시
 public class Main {
-    public static void main(String[] args) throws Exception {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int[] arr = new int[N];
-
-        for (int i = 0; i < N; i++) {
-            arr[i] = sc.nextInt();
-        }
-        Stack<Integer> stack = new Stack<>();
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
+        Stack<Integer> stack = new Stack<>();
 
-        int num = 1; // 오름차순 수
-        boolean result = true;
-        for (int i = 0; i < arr.length; i++) {
-            int su = arr[i]; // 현재 수열의 수
-            if (su >= num) { // 현재 수열 값 >= 오름차순 자연수 : 값이 같아질 때까지 push() 수행
-                while (su >= num) {
-                    stack.push(num++); // push()
-                    sb.append("+\n");
+        int n = Integer.parseInt(br.readLine());
+        int start = 0;
+
+        while(n-- > 0) {
+            int num = Integer.parseInt(br.readLine());
+
+            if(num > start) {
+                // start + 1부터 입력받은 value까지 push를 한다.
+                for(int i = start + 1; i <= num; i++) {
+                    stack.push(i);
+                    sb.append('+').append('\n');
                 }
-                stack.pop();
-                sb.append("-\n");
-            } else { // 현재 수열 값 < 오름차순 자연수 : pop()을 수행해 수열 원소를 꺼냄
-                int n = stack.pop();
-                // 스택의 가장 위의 수가 만들어야 하는 수열의 수보다 크면 수열을 출력할 수 없음
-                if (n > su) {
-                    System.out.println("NO");
-                    result = false;
-                    break;
-                } else {
-                    sb.append("-\n");
-                }
+                start= num; // 다음 push 할 때의 오름차순을 유지하기 위한 변수 초기화
             }
+            // top에 있는 원소가 입력받은 값과 같지 않은 경우
+            else if(stack.peek() != num) {
+                System.out.println("NO");
+                return;
+            }
+
+            stack.pop();
+            sb.append('-').append('\n');
         }
-        if (result)
-            System.out.println(sb.toString());
+
+        System.out.println(sb);
     }
+
 }
