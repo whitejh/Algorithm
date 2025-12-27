@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-// 2025/7/31 목요일 오전 11시 20분
-// 스택
 public class Main {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
