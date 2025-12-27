@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 
-// 2025/12/27 토요일
+// 2025/12/27 토요일 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -25,18 +25,18 @@ public class Main {
 
         // 투포인터
         int count = 0;
-        int left = 0;
-        int right = list.size() - 1;
+        int start = 0;
+        int end = list.size() - 1;
 
-        while (left < right) {
-            if (list.get(left) + list.get(right) < M) {
-                left++;
-            } else if (list.get(left) + list.get(right) > M) {
-                right--;
+        while (start < end) {
+            if (list.get(start) + list.get(end) < M) {
+                start++;
+            } else if (list.get(start) + list.get(end) > M) {
+                end--;
             } else {
                 count++;
-                left++;
-                right--;
+                start++;
+                end--;
             }
         }
         System.out.println(count);
