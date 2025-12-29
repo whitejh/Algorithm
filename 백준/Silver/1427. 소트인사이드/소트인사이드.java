@@ -1,30 +1,34 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
-// 소트인사이드
-// 2025/1/20 오후 11시 40분
-// 배열의 index를 key로 활용
-// 계수 정렬 알고리즘 (Counting Sort)
+// 2025.12.29
+// 선택정렬 - 내림차순으로 자릿수 정렬하기
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int[] arr = new int[10]; // index 10개 : [0,1,2,3,4,5,6,7,8,9]
-        char[] temp = br.readLine().toCharArray();
 
-        for (char c : temp) {
-            int num = Integer.parseInt(String.valueOf(c));
-            arr[num]++;
+        String sArr = br.readLine();
+        char[] num = sArr.toCharArray();
+
+        // 선택정렬 - 내림차순
+        for (int i = 0; i < num.length - 1; i++) {
+            int maxIdx = i;  // 현재 i 위치에서 가장 큰 값을 찾는다
+
+            for (int j = i + 1; j < num.length; j++) {
+                if (num[j] > num[maxIdx]) {
+                    maxIdx = j;
+                }
+            }
+
+            // swap
+            char temp = num[i];
+            num[i] = num[maxIdx];
+            num[maxIdx] = temp;
         }
 
-        for (int i = 9; i >= 0; ) {
-            if (arr[i] != 0) {
-                System.out.print(i);
-                arr[i]--;
-            } else {
-                i--; // arr[i]가 0인 경우, i 감소
-            }
+        // 출력
+        for (char c : num) {
+            System.out.print(c);
         }
     }
 }
