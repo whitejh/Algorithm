@@ -3,9 +3,6 @@ import java.util.*;
 
 // 병합정렬(Merge Sort)
 // 2025/1/6 화요일
-import java.io.*;
-import java.util.*;
-
 public class Main {
 
     static int[] arr;
@@ -33,10 +30,9 @@ public class Main {
             sb.append(arr[i]).append("\n");
         }
 
-//        bw.write(sb.toString());
-//        bw.flush();
-//        bw.close();
-        System.out.println(sb);
+        bw.write(sb.toString());
+        bw.flush();
+        bw.close();
     }
 
     // 병합 정렬 (분할)
