@@ -16,7 +16,7 @@ public class Main {
         if (n == 0) {
             System.out.println(num);
         }
-        for (int i = 1; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
             int tmp = 10 * num + i;
             if (n > 0 && isPrime(tmp)) {
                 DFS(tmp, n - 1);
