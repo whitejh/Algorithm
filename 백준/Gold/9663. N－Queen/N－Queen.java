@@ -2,7 +2,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-// 2025/9/17 수요일 저녁 7시 30분
 // 백트래킹
 public class Main {
 
