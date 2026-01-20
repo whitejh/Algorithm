@@ -1,6 +1,6 @@
 class Solution {
-    private static int[][] computer;
-    private static boolean[] visited; // 방문배열
+    static int[][] computer;
+    static boolean[] visited; // 방문배열
     
     private static void dfs(int now) {
         if (visited[now]) return;
