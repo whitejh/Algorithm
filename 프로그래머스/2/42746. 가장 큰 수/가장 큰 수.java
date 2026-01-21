@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-// 2025/1/29 수요일 오후 10시 25분
+// 2026/1/21 수요일 
 // 가장 큰 수
 class Solution {
     public String solution(int[] numbers) {
