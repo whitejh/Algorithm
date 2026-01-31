@@ -1,44 +1,62 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
-import java.io.*;
-import java.util.*;
-
-// 2025/8/18 월요일 오후 5시 15분
-// BFS
 public class Main {
+    public static int N;
+    public static int K;
+    public static int[] dMove = {-1, 1, 2};
+    public static int[] count;
+    public static Queue<Integer> queue = new LinkedList<Integer>();
 
-    public static void main(String[] args) throws Exception {
-
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int N = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
+        K = Integer.parseInt(st.nextToken());
+        count = new int[100001];
 
-        int[] visited = new int[100001]; // i 위치에 몇 초만에 방문했나요?
-        visited[N] = 0;
-
-        Queue<Integer> queue = new LinkedList<>();
+        count[N] = 1;
         queue.add(N);
 
-        // BFS 탐색
-        while (!queue.isEmpty()) {
-            int now = queue.poll();
-            if (now == K) { // 지금 위치가 동생의 위치이면
-                bw.write(String.valueOf(visited[now]));
-                break;
-            }
-            int[] nextList = {now - 1, now + 1, now * 2};
+        if (N == K) {
+            System.out.println(0);
+        } else {
+            bfs();
+        }
+    }
 
-            for (int next : nextList) {
-                if (0 <= next && next <= 100000 && visited[next] == 0) { // next는 아직 방문하지 않은 노드
-                    visited[next] = visited[now] + 1;
-                    queue.add(next);
+    public static void bfs() {
+
+        while (!queue.isEmpty()) {
+            int temp = queue.poll();
+
+            for (int i = 0; i < 3; i++) {
+                int next;
+                if (i == 2) {
+                    next = temp * dMove[i];
+                } else {
+                    next = temp + dMove[i];
                 }
 
+                if (next == K) {
+                    System.out.println(count[temp]);
+                    return;
+                }
+
+                if (next >= 0 && next < count.length && count[next] == 0) {
+                    queue.add(next);
+                    count[next] = count[temp] + 1;
+                }
             }
+
         }
-        bw.close();
+
     }
+
 
 }
