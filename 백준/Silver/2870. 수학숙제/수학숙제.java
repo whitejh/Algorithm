@@ -1,10 +1,6 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.math.BigInteger;
-import java.util.ArrayList;
+import java.util.*;
 
 // 2026.2.10 화요일 오후 1시 55분
 public class Main {
@@ -30,7 +26,8 @@ public class Main {
         }
         
         //list.sort((a,b) -> a.compareTo(b));
-        list.sort(BigInteger::compareTo);
+        //list.sort(BigInteger::compareTo);
+        Collections.sort(list);
         
         N = list.size();
         for (int i = 0; i < N; i++) {
