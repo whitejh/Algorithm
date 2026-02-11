@@ -1,48 +1,36 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
-// 2025/4/24 목요일 오후 3시 40분
-// 이진탐색
+// 해시셋, 이분탐색
+// 수찾기
+// 2026.2.11 수
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
+        StringTokenizer st;
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        int N = Integer.parseInt(br.readLine());
+        Set<Integer> set = new HashSet<>();
+        st = new StringTokenizer(br.readLine());
 
         for (int i = 0; i < N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+            set.add(Integer.parseInt(st.nextToken()));
         }
-        Arrays.sort(arr);
 
         int M = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder(); 
 
         for (int i = 0; i < M; i++) {
-            boolean find = false;
             int target = Integer.parseInt(st.nextToken());
-
-            // 이진탐색 시작
-            int start = 0;
-            int end = arr.length - 1;
-
-            while (start <= end) {
-                int mid_index = (start + end) / 2;
-                int mid_value = arr[mid_index]; // 중앙값
-
-                if (mid_value > target) {
-                    end = mid_index - 1;
-                } else if (mid_value < target) {
-                    start = mid_index + 1;
-                } else {
-                    find = true;
-                    break;
-                }
+            
+            if (set.contains(target)) {
+                sb.append(1).append("\n");
+            } else {
+                sb.append(0).append("\n");
             }
-            if(find) System.out.println(1);
-            else System.out.println(0);
         }
+        
+        System.out.print(sb);
     }
 }
-
