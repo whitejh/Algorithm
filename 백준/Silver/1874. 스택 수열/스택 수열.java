@@ -1,12 +1,12 @@
 import java.io.*;
 import java.util.*;
 
-// 2025/12/26 금요일 오후 12시
+// 2025/2/24 화요일 오후 9시 30분
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        Stack<Integer> stack = new Stack<>();
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
 
         int n = Integer.parseInt(br.readLine());
         int start = 0;
