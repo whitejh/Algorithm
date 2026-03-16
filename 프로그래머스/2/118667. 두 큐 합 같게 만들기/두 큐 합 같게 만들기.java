@@ -26,9 +26,9 @@ class Solution {
             return -1;
         }
         
-        for(int i = 0; i < 3 * n; i++) {
+        for(int cnt = 0; cnt < 3 * n; cnt++) {
             if(sum1 == sum2) {
-                return i;
+                return cnt;
             } else if(sum1 > sum2) {
                 int num = q1.pollFirst();
                 q2.addLast(num);
@@ -42,8 +42,6 @@ class Solution {
             }
         }
         
-        
-        
-        return answer;
+        return -1;
     }
 }
