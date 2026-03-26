@@ -12,17 +12,19 @@ class Solution {
         return answer;
     }
     
-    private static void backtrack(int k, int cnt, int[][] dungeons) {
+    private static void backtrack(int k, int cnt, int[][] dungeons) {       
         
-        if(cnt > answer) 
+        if(cnt > answer) {
             answer = cnt;
+        }
         
         for(int i = 0; i < n; i++) {
             if(k >= dungeons[i][0] && !visited[i]) {
                 visited[i] = true;
-                backtrack(k - dungeons[i][1], cnt + 1, dungeons);
+                backtrack(k - dungeons[i][1], cnt+1,dungeons);
                 visited[i] = false;
             }
         }
+        
     }
 }
