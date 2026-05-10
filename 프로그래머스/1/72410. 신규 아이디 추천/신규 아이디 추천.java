@@ -4,7 +4,7 @@ class Solution {
 
         // 1,2,3단계
         answer = new_id.toLowerCase();
-        answer = answer.replaceAll("[^a-z0-9._-]", "");
+        answer = answer.replaceAll("[^a-z0-9_.-]", "");
         answer = answer.replaceAll("\\.+", ".");
 
         // 4단계
