@@ -1,6 +1,6 @@
 # [level 4] 징검다리 - 43236 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/43236?language=java) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/43236) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2026년 06월 16일 22:22:22
+2026년 06월 16일 22:23:13
 
 ### 문제 설명
 
