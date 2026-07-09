@@ -1,32 +1,37 @@
 class Solution {
     public int[] solution(int[] sequence, int k) {
-        int[] res = new int[2];
         
-        /**
-        <정석적인 구간합 문제>
-        1. 길이가 짧은 수열 > 시작 인덱스가 낮은.
-        방법 1. 투포인터 : right를 늘리면서 커지면 left를 당기는 방식 -> 풀이완
-        **/
+        int left = 0, right = 0;
+        int sum = sequence[0]; // 초기 합은 첫번째 원소 값
         
-        int l=0, r=0, sum=sequence[0], min=Integer.MAX_VALUE;
+        // 정답 구간의 길이와 인덱스를 기억할 변수
+        int minLen = Integer.MAX_VALUE;
+        int[] answer = new int[2];
         
-        while(l<sequence.length) {
-            if(sum == k) {
-                if(r-l < min) { // 시작 인덱스 조건절
-                    res[0] = l; res[1] = r;
-                    min = r-l;
+        while (right < sequence.length) {
+            if (sum == k) {
+                int curLen = right - left + 1;
+                
+                if (curLen < minLen) {
+                    minLen = curLen;
+                    answer[0] = left;
+                    answer[1] = right;
                 }
-            }
-            
-            if(sum > k){
-                sum -= sequence[l++];
-            }
-            else {
-                if(r+1 >= sequence.length) break;
-                sum += sequence[++r];
+                
+                // 값을 찾았으니 left를 움직여 다음 구간 탐색 준비
+                sum -= sequence[left];
+                left++;
+            } else if (sum < k) {
+                right++;
+                if (right < sequence.length) {
+                    sum += sequence[right];
+                }
+            } else {
+                sum -= sequence[left]; // sum > k
+                left++;
             }
         }
         
-        return res;
+        return answer;
     }
 }
