@@ -1,60 +1,49 @@
+// 최단 거리 문제 - 특정 시작점에서 여러 위치까지의 최단 거리 계산
+// 격자나 그래프에서 BFS를 활용하여 최단 거리 구하기
+// BFS를 사용하면 가중치가 동일한 경우, 최단 거리를 쉽게 찾음
+
 import java.util.*;
-import java.io.*;
 
 class Solution {
     
-    private static final int[] dx = {-1,1,0,0};
-    private static final int[] dy = {0,0,-1,1};
-    
-    private static class Node {
-        int r,c;
-        
-        public Node(int r, int c) {
-            this.r=r;
-            this.c=c;
-        }
-    }
+    int[] dr = {-1,1,0,0};
+    int[] dc = {0,0,-1,1};
+    int n,m;
+    boolean[][] visited;
     
     public int solution(int[][] maps) {
-        int answer = 0;
         
-        int N = maps.length;
-        int M = maps[0].length;
+        n = maps.length;
+        m = maps[0].length;
         
-        Queue<Node> queue = new ArrayDeque<>(); // 큐
-        boolean[][] visited = new boolean[N][M]; // 방문배열
-        int[][] dist = new int[N][M]; // 최단거리 배열
+        visited = new boolean[n][m];
+        Queue<int[]> q = new ArrayDeque<>();
         
-        queue.add(new Node(0,0));
+        q.offer(new int[]{0,0,1}); // r 좌표, c 좌표, 이동한 거리 세팅
         visited[0][0] = true;
-        dist[0][0] = 1;
         
-        while(!queue.isEmpty()) {
-            Node now = queue.poll(); // 현재 위치한 정점
+        while(!q.isEmpty()) {
+            int[] cur = q.poll();
+            int r = cur[0];
+            int c = cur[1];
+            int dist = cur[2];
             
-            for(int i = 0; i<4;i++) {
-                int nr = now.r + dx[i];
-                int nc = now.c + dy[i];
+            if(r == n - 1 && c == m - 1) { // 목적지인지 먼저 확인
+                return dist;
+            }
+            
+            for(int i = 0; i < 4; i++) {
+                int nr = r + dr[i];
+                int nc = c + dc[i];
                 
-                if(nr<0 || nc < 0 || nr >= N || nc >= M) {
-                    continue; // map 밖으로 나가는 경우, 예외처리
-                }
+                if(nr < 0 || nr >= n || nc < 0 || nc >= m) continue;
+                if(visited[nr][nc] || maps[nr][nc] == 0) continue;
                 
-                if(maps[nr][nc] == 0) // 벽
-                    continue;
-                
-                if(!visited[nr][nc]) {
-                    visited[nr][nc] = true; // 방문처리
-                    queue.add(new Node(nr, nc));
-                    dist[nr][nc] = dist[now.r][now.c] + 1;
-                }
+                visited[nr][nc] = true;
+                q.offer(new int[]{nr, nc, dist + 1});
+            
             }
         }
-        
-        if(dist[N-1][M-1] == 0) 
-            return -1;
-        else 
-            return dist[N-1][M-1];
-       
+        return -1;
     }
 }
