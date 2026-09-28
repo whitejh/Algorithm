@@ -1,38 +1,49 @@
 import java.util.*;
+
 class Solution {
-    public int solution(int n, int[][] edge) {
-        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i <= n; i++) {
+    public int solution(int n, int[][] edge) {  
+        List<List<Integer>> graph = new ArrayList<>();
+        for(int i = 0 ; i <= n; i++) {
             graph.add(new ArrayList<>());
         }
-        for (int[] e : edge) {
-            graph.get(e[0]).add(e[1]);
-            graph.get(e[1]).add(e[0]);  // ✅ 양방향 추가
+        
+        for(int[] line : edge) {
+            int a = line[0];
+            int b = line[1];
+            
+            graph.get(a).add(b);
+            graph.get(b).add(a);
         }
-        int[] distance = new int[n + 1];
+        
+        int[] distance = new int[n+1];
         Arrays.fill(distance, -1);
         distance[1] = 0;
-        Queue<Integer> queue = new LinkedList<>();
-        queue.offer(1);
-
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
-            for (int next : graph.get(current)) {
-                if (distance[next] == -1) {              // ✅ 방문 체크 추가
-                    queue.offer(next);
-                    distance[next] = distance[current] + 1;
+        Queue<Integer> queue = new ArrayDeque<>();
+        
+        queue.add(1); // 1부터 시작
+        
+        while(!queue.isEmpty()) {
+            int cur = queue.remove(); // 현재 노드 방문
+            
+            // 다음 노드 예약
+            for(int next : graph.get(cur)) {
+                if(distance[next] == -1) {
+                    distance[next] = distance[cur] + 1;
+                    queue.add(next);
                 }
             }
         }
-
+            
         int maxDistance = 0;
-        for (int i = 1; i <= n; i++) {
+        for(int i = 1; i <= n; i++) {
             maxDistance = Math.max(maxDistance, distance[i]);
         }
+            
         int count = 0;
         for (int i = 1; i <= n; i++) {
-            if (distance[i] == maxDistance) count++;
+            if(distance[i] == maxDistance) count++;
         }
+        
         return count;
     }
 }
