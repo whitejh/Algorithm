@@ -6,16 +6,19 @@ class Solution {
         
         HashMap<String, Integer> map = new HashMap<>();
         
-        for(int i = 0; i < clothes.length; i++) {
-            String category = clothes[i][1];
-            map.put(category, map.getOrDefault(category,0) + 1);       
+        for(String[] cloth : clothes) {
+            if (!map.containsKey(cloth[1])){
+                map.put(cloth[1], 1);    
+            } else {
+                map.put(cloth[1], map.get(cloth[1]) + 1);
+            }  
+            //map.put(cloth[1], map.getOrDefault(cloth[1], 0) + 1);
         }
         
-        for(int count : map.values()) {
-            answer *= (count + 1);
+        for(int value : map.values()) {
+            answer *= value + 1;
         }
-        answer -= 1;
         
-        return answer;
+        return answer - 1;
     }
 }
