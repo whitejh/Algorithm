@@ -1,0 +1,31 @@
+import java.util.*;
+
+class Solution {
+    public int solution(String[] want, int[] number, String[] discount) {
+        int answer = 0;
+        
+        HashMap<String,Integer> wantMap = new HashMap<>();
+        for(int i = 0; i < want.length; i++) {
+            wantMap.put(want[i],number[i]);
+        }
+        
+        // 특정일 i에 회원가입 시 할인받을 수 있는 품목 체크
+        for(int i = 0; i < discount.length - 9; i++) {
+            HashMap<String, Integer> discount10d = new HashMap<>();
+            
+            for(int j = i; j < i + 10; j++) {
+                if(wantMap.containsKey(discount[i])) {
+                    discount10d.put(discount[j], discount10d.getOrDefault(discount[j], 0) + 1);
+                }
+            }
+            
+            if(discount10d.equals(wantMap)) {
+                answer++;
+            }
+            
+        }
+        return answer;
+    }
+}
+
+//
