@@ -2,23 +2,24 @@ import java.util.*;
 
 public class Solution {
     public int[] solution(int []arr) {
+        int[] answer = {};
         
-        Deque<Integer> q = new ArrayDeque<>();
+        Deque<Integer> deque = new ArrayDeque<>();
         
-        for(int value : arr) {
-            if (q.isEmpty()) {
-                q.addLast(value);
-            } else if (q.peekLast() != value) {
-                q.addLast(value);
+        for(int num : arr) {
+            if(deque.isEmpty()) {
+                deque.addLast(num);
+            } else if(deque.peekLast() != num) {
+                deque.addLast(num);
             }
         }
         
-        int[] result = new int[q.size()];
+        answer = new int[deque.size()];
         int index = 0;
         
-        for(int value : q) {
-            result[index++] = value;
+        for(int num : deque) {
+            answer[index++] = num;
         }
-        return result;
+        return answer;
     }
 }
